@@ -1,1 +1,1 @@
-export { default } from "./components/TabContainer.jsx";
+export { default } from "./TabContainer.jsx";

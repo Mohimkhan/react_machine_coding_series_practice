@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TabList from "./TabList";
-import { autoIncrement } from "../../../utils/tabs";
+import TabList from "./components/TabList";
+import { autoIncrement } from "../../utils/tabs";
 
 const generateID = autoIncrement();
 
