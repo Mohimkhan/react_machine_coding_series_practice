@@ -1,4 +1,4 @@
-import Button from "../../AutoComplete/components/Button";
+import Button from "../../components/common/Button";
 
 const TabList = ({ tabs = [], onSelect = () => {} }) => {
   const SelectedTabComponent = tabs.filter((tab) => tab.isSelected)[0]
