@@ -8,7 +8,7 @@ const App = () => {
           Hi, there🖐️. Here you will find all the links 🔗
         </h2>
 
-        <ul className="flex list-decimal text-xl">
+        <ul className="flex flex-col gap-2 list-decimal text-xl">
           <li>
             {" "}
             <Link
@@ -17,6 +17,16 @@ const App = () => {
               className="hover:underline underline-offset-4"
             >
               AutoComplete - component
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link
+              to={"/tabs"}
+              prefetch="intent"
+              className="hover:underline underline-offset-4"
+            >
+              TabList - component
             </Link>
           </li>
         </ul>
