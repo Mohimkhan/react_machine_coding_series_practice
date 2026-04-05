@@ -1,7 +1,20 @@
 @import "tailwindcss";
 
-
 body {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.85);
   color: white;
+}
+
+@theme {
+  --animate-appear: 2s appear ease-in-out forwards running 1;
+  @keyframes appear {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
 }
