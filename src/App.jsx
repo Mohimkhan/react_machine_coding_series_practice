@@ -29,6 +29,16 @@ const App = () => {
               TabList - component
             </Link>
           </li>
+          <li>
+            {" "}
+            <Link
+              to={"/traffic_light"}
+              prefetch="intent"
+              className="hover:underline underline-offset-4"
+            >
+              TrafficLight - component
+            </Link>
+          </li>
         </ul>
       </div>
     </>
