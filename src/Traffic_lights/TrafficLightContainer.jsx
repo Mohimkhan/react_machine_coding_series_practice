@@ -70,7 +70,9 @@ const TrafficLightContainer = () => {
           setCurrentActionalLight((prev) => prev + 1);
         }, currentItem?.stayFor ?? 1000);
       } else {
-        alert("FINISHED");
+        setLights((prev) => {
+          return prev.map((light) => ({ ...light, isPerforming: true }));
+        });
       }
     };
 
