@@ -39,6 +39,16 @@ const App = () => {
               TrafficLight - component
             </Link>
           </li>
+          <li>
+            {" "}
+            <Link
+              to={"/accordion"}
+              prefetch="intent"
+              className="hover:underline underline-offset-4"
+            >
+              Accordion - component
+            </Link>
+          </li>
         </ul>
       </div>
     </>

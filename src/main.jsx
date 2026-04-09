@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import AutoComp from "./AutoComplete";
 import TabContainer from "./Tabs/index.jsx";
 import TrafficLightContainer from "./Traffic_lights/index.jsx";
+import AccordionContainer from "./Accordion/AccordionContainer.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/traffic_light",
     element: <TrafficLightContainer />,
+  },
+  {
+    path: "/accordion",
+    element: <AccordionContainer />,
   },
 ]);
 
