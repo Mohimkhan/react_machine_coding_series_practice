@@ -36,7 +36,7 @@ const AccordionList = ({
             style={{
               gridTemplateRows: accordion.expand ? "1fr" : "0",
               overflow: "hidden",
-              transition: "grid-template-rows 200ms linear"
+              transition: "grid-template-rows 200ms linear",
             }}
           >
             <div className="border-b-[1px] border-b-blue-500 pb-1">
