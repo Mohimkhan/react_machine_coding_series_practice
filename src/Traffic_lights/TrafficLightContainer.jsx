@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { autoIncrement } from "../../utils/tabs";
 import { useEffect } from "react";
+import WrapperWithHeader from "../components/common/WrapperWithHeader";
 
 const Light = ({ color = "red", isPerforming }) => {
   return (
@@ -80,9 +81,7 @@ const TrafficLightContainer = () => {
   }, [lights, setLights, currentActionalLight, setCurrentActionalLight]);
 
   return (
-    <div className="grid place-items-center mt-8 gap-3">
-      <h2 className="text-xl">Traffic Lights</h2>
-
+    <WrapperWithHeader heading="Traffic Lights 🚦">
       {/* render the lights */}
       <div className="w-12 h-auto bg-black rounded-md flex justify-center items-center flex-col p-1.5 gap-2">
         {!!lights.length &&
@@ -96,7 +95,7 @@ const TrafficLightContainer = () => {
               />
             ))}
       </div>
-    </div>
+    </WrapperWithHeader>
   );
 };
 

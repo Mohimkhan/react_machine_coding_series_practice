@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Suggestions from "./components/Suggestions";
 import Loading from "./components/Loading";
 import TextField from "./components/TextField";
+import WrapperWithHeader from "../components/common/WrapperWithHeader";
 
 const AutoComp = () => {
   const [inputValue, setInputValue] = useState("");
@@ -37,13 +38,11 @@ const AutoComp = () => {
   const filteredSuggestions = suggestions.filter((sug) =>
     debouncedValue === ""
       ? false
-      : sug.toLowerCase().includes(debouncedValue.toLowerCase())
+      : sug.toLowerCase().includes(debouncedValue.toLowerCase()),
   );
   return (
-    <div className="grid place-content-center">
-      <h2 className="text-xl font-bold mt-15">AutoComplete Component 🔎</h2>
-
-      <div className="pt-4">
+    <WrapperWithHeader heading="AutoComplete Component 🔎">
+      <div>
         {/* // input field */}
         <TextField
           inputValue={inputValue}
@@ -62,7 +61,7 @@ const AutoComp = () => {
           />
         )}
       </div>
-    </div>
+    </WrapperWithHeader>
   );
 };
 export default AutoComp;

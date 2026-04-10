@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TabList from "./components/TabList";
 import { autoIncrement } from "../../utils/tabs";
+import WrapperWithHeader from "../components/common/WrapperWithHeader";
 
 const generateID = autoIncrement();
 
@@ -64,15 +65,13 @@ const TabContainer = () => {
   };
 
   return (
-    <div className="grid place-items-center mt-8 gap-6">
-      <h2 className="text-xl">Tab Container</h2>
-
+    <WrapperWithHeader heading="Tab Container 💻">
       {/* tab List */}
       <TabList
         tabs={tabs}
         onSelect={handleSelect}
       />
-    </div>
+    </WrapperWithHeader>
   );
 };
 export default TabContainer;
