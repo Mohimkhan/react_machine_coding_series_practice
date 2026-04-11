@@ -83,17 +83,19 @@ const TrafficLightContainer = () => {
   return (
     <WrapperWithHeader heading="Traffic Lights 🚦">
       {/* render the lights */}
-      <div className="w-12 h-auto bg-black rounded-md flex justify-center items-center flex-col p-1.5 gap-2">
-        {!!lights.length &&
-          lights
-            .sort((a, b) => a.placeOrder - b.placeOrder)
-            .map((light) => (
-              <Light
-                key={light.id}
-                id={light.id}
-                {...light}
-              />
-            ))}
+      <div className="w-full flex justify-center items-center flex-col gap-2">
+        <div className="w-12 h-auto bg-black flex items-center flex-col rounded-md p-1.5">
+          {!!lights.length &&
+            lights
+              .sort((a, b) => a.placeOrder - b.placeOrder)
+              .map((light) => (
+                <Light
+                  key={light.id}
+                  id={light.id}
+                  {...light}
+                />
+              ))}
+        </div>
       </div>
     </WrapperWithHeader>
   );
