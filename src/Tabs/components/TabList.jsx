@@ -24,7 +24,10 @@ const TabList = ({ tabs = [], onSelect = () => {} }) => {
         ))}
       </div>
       {/* selected tab */}
-      <div role="tabpanel">
+      <div
+        className="text-center mt-3"
+        role="tabpanel"
+      >
         <SelectedTabComponent />
       </div>
     </>
