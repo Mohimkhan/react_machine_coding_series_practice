@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AccordionList from "./components/AccordionList";
 import { autoIncrement } from "../../utils/tabs";
+import WrapperWithHeader from "../components/common/WrapperWithHeader";
 
 const AccordionContainer = () => {
   const ID = autoIncrement();
@@ -61,14 +62,32 @@ N26
   ]);
 
   return (
-    <div className="grid place-items-center mt-8 gap-6">
-      <h2 className="text-xl">Accordion</h2>
+    <>
+      {/* Custom Accordion */}
+      <WrapperWithHeader heading="Custom Accordion">
+        <AccordionList
+          accordionsData={accordionsData}
+          setAccordionsData={setAccordionsData}
+        />
+      </WrapperWithHeader>
+      {/* Native Accordion */}
+      <WrapperWithHeader heading="Custom Accordion">
+        <div className="w-full flex flex-col items-stretch gap-2">
+          {accordionsData.map((accordion, index) => (
+            <details
+              key={index}
+              className="w-full border border-white/50 p-2 rounded-md"
+            >
+              <summary className="cursor-pointer font-semibold">
+                {accordion?.title ?? "No Title"}
+              </summary>
 
-      <AccordionList
-        accordionsData={accordionsData}
-        setAccordionsData={setAccordionsData}
-      />
-    </div>
+              <p className="mt-2">{accordion?.content ?? "No Content"}</p>
+            </details>
+          ))}
+        </div>
+      </WrapperWithHeader>
+    </>
   );
 };
 export default AccordionContainer;
