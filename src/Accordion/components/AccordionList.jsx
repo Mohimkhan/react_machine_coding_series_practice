@@ -19,6 +19,8 @@ const AccordionList = ({
       {accordionsData?.map((accordion) => (
         <div
           className={`cursor-pointer border border-white/50 p-1 pb-2 rounded-md ${accordion.expand ? "space-y-3" : ""}`}
+          tabIndex={0}
+          key={accordion.id}
           onClick={() => handleAccordionExpansion(accordion.id)}
         >
           <div
