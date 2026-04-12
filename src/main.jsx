@@ -6,6 +6,7 @@ import AutoComp from "./AutoComplete";
 import TabContainer from "./Tabs/index.jsx";
 import TrafficLightContainer from "./Traffic_lights/index.jsx";
 import AccordionContainer from "./Accordion/AccordionContainer.jsx";
+import FormContainer from "./Config_driven_Form/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/accordion",
     element: <AccordionContainer />,
+  },
+   {
+    path: "/config_driven_form",
+    element: <FormContainer />,
   },
 ]);
 

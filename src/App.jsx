@@ -49,6 +49,16 @@ const App = () => {
               Accordion - component
             </Link>
           </li>
+          <li>
+            {" "}
+            <Link
+              to={"/config_driven_form"}
+              prefetch="intent"
+              className="hover:underline underline-offset-4"
+            >
+              Config Drive Form - component
+            </Link>
+          </li>
         </ul>
       </div>
     </>
