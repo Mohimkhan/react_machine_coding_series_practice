@@ -1,0 +1,40 @@
+import Field from "./Field";
+
+const FormWrapper = ({
+  form = {},
+  formName,
+  handleChange = () => {},
+  handleSubmit = () => {},
+}) => {
+  return (
+    <div>
+      <h1 className="font-bold text-xs mb-5">Student Registration</h1>
+
+      <form
+        action=""
+        onSubmit={(e) => handleSubmit(e, formName)}
+      >
+        <div className="flex flex-col justify-center items-start gap-2.5">
+          {!!form?.fields?.length &&
+            form.fields.map((field) => (
+              <Field
+                key={field.id}
+                {...field}
+                className={field.className}
+                formName={formName}
+                handleChange={handleChange}
+              />
+            ))}
+        </div>
+
+        <button
+          type="submit"
+          className="w-full max-w-2xs cursor-pointer bg-blue-600 text-white p-1 text-xs hover:bg-blue-800 rounded-md"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
+export default FormWrapper;
