@@ -37,9 +37,10 @@ const FormContainer = () => {
           placeholder: "",
           disabled: false,
           name: "student_info_check",
+          checked: false,
           value: false,
           className: "border border-white/50 rounded-md p-0.5",
-          required: true,
+          required: false,
         },
         {
           id: ID(),
@@ -107,15 +108,25 @@ const FormContainer = () => {
 
   const handleSubmit = (e, formName) => {
     e.preventDefault();
-    console.log("formName ", forms[formName].submittedValue);
+    console.log("formName ", forms[formName]);
   };
 
   const handleChange = (fieldID, fieldName, value, formName) => {
     console.log({ fieldName, value });
     const updateChange = (arr) => {
       return arr.map((field) => {
-        if (fieldID === String(field.id) && field.name === fieldName) {
+        if (
+          fieldID === String(field.id) &&
+          field.name === fieldName &&
+          field.type !== "checkbox"
+        ) {
           return { ...field, value };
+        } else if (
+          fieldID === String(field.id) &&
+          field.name === fieldName &&
+          field.type === "checkbox"
+        ) {
+          return { ...field, checked: value, value };
         } else {
           return field;
         }
@@ -141,6 +152,28 @@ const FormContainer = () => {
     }));
   };
 
+  const handleReset = (formName) => {
+    if (!forms[formName]) {
+      console.error("Form Not Found!!!");
+      return;
+    }
+
+    setForms((prevForm) => ({
+      ...prevForm,
+      student_registration: {
+        ...prevForm[formName],
+        fields: prevForm[formName].fields.map((field) =>
+          field.type === "checkbox"
+            ? { ...field, checked: false, value: false }
+            : field.type === "radio"
+              ? { ...field, checked: false, value: "" }
+              : { ...field, value: "" },
+        ),
+        submittedValue: {},
+      },
+    }));
+  };
+
   return (
     <WrapperWithHeader heading="Config Driven Form">
       <FormWrapper
@@ -148,6 +181,7 @@ const FormContainer = () => {
         formName={formName}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        handleReset={handleReset}
       />
     </WrapperWithHeader>
   );
