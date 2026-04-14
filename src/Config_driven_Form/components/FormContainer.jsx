@@ -49,7 +49,7 @@ const FormContainer = () => {
           placeholder: "",
           disabled: false,
           name: "student_gender",
-          options: ["male", "female"],
+          options: { male: { checked: false }, female: { checked: false } },
           value: "",
           className: "border border-white/50 rounded-md p-0.5",
           required: false,
@@ -120,8 +120,19 @@ const FormContainer = () => {
           field.name === fieldName &&
           field.type === "radio"
         ) {
-          const { checked: _, ...rest } = field;
-          return { ...rest, value };
+          const reset = Object.keys(field.options).reduce((acc, cur) => {
+            acc[cur] = { checked: false };
+            return acc;
+          }, {});
+
+          return {
+            ...field,
+            value,
+            options: {
+              ...reset,
+              [value]: { checked: !field.options[value].checked },
+            },
+          };
         } else if (
           fieldID === String(field.id) &&
           field.name === fieldName &&
@@ -161,6 +172,7 @@ const FormContainer = () => {
       return;
     }
 
+    // setting all form field values to default
     setForms((prevForm) => ({
       ...prevForm,
       student_registration: {
@@ -169,7 +181,15 @@ const FormContainer = () => {
           field.type === "checkbox"
             ? { ...field, checked: false, value: false }
             : field.type === "radio"
-              ? { ...field, checked: false, value: "" }
+              ? {
+                  ...field,
+                  options: {
+                    ...Object.keys(field.options).reduce((acc, cur) => {
+                      acc[cur] = { checked: false };
+                      return acc;
+                    }, {}),
+                  },
+                }
               : { ...field, value: "" },
         ),
         submittedValue: {},

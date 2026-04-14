@@ -26,8 +26,8 @@ const Field = (props) => {
         <div>
           <fieldset>
             <legend>Chose Gender</legend>
-            {rest?.options?.length > 0 &&
-              rest.options.map((option) => {
+            {Object.keys(rest?.options)?.length > 0 &&
+              Object.keys(rest?.options).map((option) => {
                 return (
                   <label
                     key={option}
@@ -36,6 +36,7 @@ const Field = (props) => {
                     {option}
                     <input
                       {...rest}
+                      checked={rest.options[option].checked}
                       onChange={(e) =>
                         handleChange(
                           e.target.id,
