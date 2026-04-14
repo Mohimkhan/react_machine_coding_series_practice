@@ -24,10 +24,11 @@ const Field = (props) => {
     } else if (rest.type === "radio") {
       return (
         <div>
-          {rest?.options?.length > 0 &&
-            rest.options.map((option) => {
-              return (
-                <div key={option}>
+          <fieldset>
+            <legend>Chose Gender</legend>
+            {rest?.options?.length > 0 &&
+              rest.options.map((option) => {
+                return (
                   <label
                     key={option}
                     htmlFor={rest.id}
@@ -45,9 +46,9 @@ const Field = (props) => {
                       }
                     ></input>
                   </label>
-                </div>
-              );
-            })}
+                );
+              })}
+          </fieldset>
         </div>
       );
     } else if (rest.type === "textarea") {

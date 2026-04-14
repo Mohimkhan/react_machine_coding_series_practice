@@ -5,6 +5,7 @@ const FormWrapper = ({
   formName,
   handleChange = () => {},
   handleSubmit = () => {},
+  handleReset = () => {},
 }) => {
   return (
     <div>
@@ -12,6 +13,7 @@ const FormWrapper = ({
 
       <form
         action=""
+        className="max-w-2xs"
         onSubmit={(e) => handleSubmit(e, formName)}
       >
         <div className="flex flex-col justify-center items-start gap-2.5">
@@ -26,13 +28,23 @@ const FormWrapper = ({
               />
             ))}
         </div>
-
-        <button
-          type="submit"
-          className="w-full max-w-2xs cursor-pointer bg-blue-600 text-white p-1 text-xs hover:bg-blue-800 rounded-md"
-        >
-          Submit
-        </button>
+        <div className="flex justify-center items-center gap-2 flex-wrap sm:flex-nowrap">
+          {/* Reset Button */}
+          <button
+            type="button"
+            className="w-full cursor-pointer bg-blue-600 text-white p-1 text-xs hover:bg-blue-800 rounded-md"
+            onClick={() => handleReset(formName)}
+          >
+            Reset
+          </button>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full cursor-pointer bg-blue-600 text-white p-1 text-xs hover:bg-blue-800 rounded-md"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

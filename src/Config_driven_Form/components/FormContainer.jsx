@@ -118,15 +118,18 @@ const FormContainer = () => {
         if (
           fieldID === String(field.id) &&
           field.name === fieldName &&
-          field.type !== "checkbox"
+          field.type === "radio"
         ) {
-          return { ...field, value };
+          const { checked: _, ...rest } = field;
+          return { ...rest, value };
         } else if (
           fieldID === String(field.id) &&
           field.name === fieldName &&
           field.type === "checkbox"
         ) {
           return { ...field, checked: value, value };
+        } else if (fieldID === String(field.id) && field.name === fieldName) {
+          return { ...field, value };
         } else {
           return field;
         }
