@@ -81,23 +81,29 @@ const FormContainer = () => {
         },
         {
           id: ID(),
-          type: "checkbox",
-          label: "Have you got the token?",
+          type: "textarea",
+          label: "Write About Yourself",
           placeholder: "",
           disabled: false,
-          name: "student_info_check",
+          name: "student_about_them",
           value: "",
           className: "",
         },
         {
           id: ID(),
-          type: "radio",
-          label: "Gender",
+          type: "select",
+          label: "Select Subject",
           placeholder: "",
           disabled: false,
-          name: "student_gender",
+          name: "student_subject",
+          options: {
+            "": { value: "please chose a subject" },
+            english: {},
+            bangla: {},
+            math: {},
+          },
           value: "",
-          className: "",
+          className: "bg-black text-white",
         },
       ],
       submittedValue: {},
@@ -108,11 +114,17 @@ const FormContainer = () => {
 
   const handleSubmit = (e, formName) => {
     e.preventDefault();
-    console.log("formName ", forms[formName]);
+    console.log(formName, forms[formName].submittedValue);
   };
 
   const handleChange = (fieldID, fieldName, value, formName) => {
+    if (!forms[formName]) {
+      console.log("Form Not Found!!!");
+      return;
+    }
+
     console.log({ fieldName, value });
+
     const updateChange = (arr) => {
       return arr.map((field) => {
         if (
@@ -156,7 +168,7 @@ const FormContainer = () => {
 
     setForms((prevForms) => ({
       ...prevForms,
-      student_registration: {
+      [formName]: {
         ...prevForms[formName],
         fields: updateChange(prevForms[formName].fields),
         submittedValue: finalSubmittedValue(
@@ -172,26 +184,30 @@ const FormContainer = () => {
       return;
     }
 
+    const restFields = (fields) => {
+      return fields.map((field) =>
+        field.type === "checkbox"
+          ? { ...field, checked: false, value: false }
+          : field.type === "radio"
+            ? {
+                ...field,
+                options: {
+                  ...Object.keys(field.options).reduce((acc, cur) => {
+                    acc[cur] = { checked: false };
+                    return acc;
+                  }, {}),
+                },
+              }
+            : { ...field, value: "" },
+      );
+    };
+
     // setting all form field values to default
     setForms((prevForm) => ({
       ...prevForm,
-      student_registration: {
+      [formName]: {
         ...prevForm[formName],
-        fields: prevForm[formName].fields.map((field) =>
-          field.type === "checkbox"
-            ? { ...field, checked: false, value: false }
-            : field.type === "radio"
-              ? {
-                  ...field,
-                  options: {
-                    ...Object.keys(field.options).reduce((acc, cur) => {
-                      acc[cur] = { checked: false };
-                      return acc;
-                    }, {}),
-                  },
-                }
-              : { ...field, value: "" },
-        ),
+        fields: restFields(prevForm[formName].fields),
         submittedValue: {},
       },
     }));
@@ -199,13 +215,23 @@ const FormContainer = () => {
 
   return (
     <WrapperWithHeader heading="Config Driven Form">
-      <FormWrapper
-        form={forms?.student_registration}
-        formName={formName}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        handleReset={handleReset}
-      />
+      <div className="flex justify-between items-center">
+        <FormWrapper
+          form={forms?.student_registration}
+          formName={formName}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleReset={handleReset}
+        />
+
+        <FormWrapper
+          form={forms?.user_info}
+          formName={Object.keys(forms)[1]}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleReset={handleReset}
+        />
+      </div>
     </WrapperWithHeader>
   );
 };

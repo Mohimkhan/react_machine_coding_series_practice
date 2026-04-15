@@ -1,3 +1,4 @@
+import { formatText } from "../utils/text";
 import Field from "./Field";
 
 const FormWrapper = ({
@@ -9,11 +10,11 @@ const FormWrapper = ({
 }) => {
   return (
     <div>
-      <h1 className="font-bold text-xs mb-5">Student Registration</h1>
+      <h1 className="font-bold text-xs mb-5">{formatText(formName)}</h1>
 
       <form
         action=""
-        className="max-w-2xs"
+        className="max-w-2xs space-y-2"
         onSubmit={(e) => handleSubmit(e, formName)}
       >
         <div className="flex flex-col justify-center items-start gap-2.5">

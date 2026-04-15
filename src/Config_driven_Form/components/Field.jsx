@@ -79,9 +79,17 @@ const Field = (props) => {
           }
           {...rest}
         >
-          <option value="Apple">Apple</option>
-          <option value="Orange">Orange</option>
-          <option value="Banana">Banana</option>
+          {Object.keys(rest?.options ?? {}).length > 0 &&
+            Object.keys(rest.options).map((option) => (
+              <option
+                key={option}
+                value={option}
+              >
+                {option !== ""
+                  ? option[0].toUpperCase() + option.slice(1)
+                  : rest?.options[option].value}
+              </option>
+            ))}
         </select>
       );
     } else {
