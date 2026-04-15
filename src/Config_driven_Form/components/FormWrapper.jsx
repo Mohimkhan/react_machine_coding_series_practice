@@ -10,7 +10,9 @@ const FormWrapper = ({
 }) => {
   return (
     <div>
-      <h1 className="font-bold text-xs mb-5">{formatText(formName)}</h1>
+      <h1 className="font-bold text-sm mb-5 border-b pb-1 border-amber-500">
+        {formatText(formName)}
+      </h1>
 
       <form
         action=""
@@ -33,7 +35,7 @@ const FormWrapper = ({
           {/* Reset Button */}
           <button
             type="button"
-            className="w-full cursor-pointer bg-blue-600 text-white p-1 text-xs hover:bg-blue-800 rounded-md"
+            className="w-full cursor-pointer font-normal tracking-wider bg-blue-600 text-white p-1 text-xs hover:bg-blue-800 rounded-md"
             onClick={() => handleReset(formName)}
           >
             Reset
@@ -41,7 +43,7 @@ const FormWrapper = ({
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full cursor-pointer bg-blue-600 text-white p-1 text-xs hover:bg-blue-800 rounded-md"
+            className="w-full cursor-pointer font-normal tracking-wider bg-green-600 text-white p-1 text-xs hover:bg-green-800 rounded-md"
           >
             Submit
           </button>
