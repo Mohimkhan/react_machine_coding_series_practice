@@ -15,6 +15,7 @@ const FormContainer = () => {
           placeholder: "Enter you're name",
           disabled: false,
           name: "student_name",
+          pattern: "[A-Za-z]+",
           value: "",
           className:
             "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
@@ -68,6 +69,7 @@ const FormContainer = () => {
           placeholder: "Enter you're name",
           disabled: false,
           name: "user_name",
+          pattern: "[A-Za-z]+",
           value: "",
           className:
             "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
