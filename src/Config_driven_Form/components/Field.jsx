@@ -83,6 +83,7 @@ const Field = (props) => {
             Object.keys(rest.options).map((option) => (
               <option
                 key={option}
+                {...(rest?.options?.[option] ?? {})}
                 value={option}
               >
                 {option !== ""

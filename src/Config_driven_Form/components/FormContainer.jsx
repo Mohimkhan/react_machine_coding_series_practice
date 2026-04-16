@@ -16,7 +16,8 @@ const FormContainer = () => {
           disabled: false,
           name: "student_name",
           value: "",
-          className: "border border-white/50 rounded-md p-0.5",
+          className:
+            "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
           required: false,
         },
         {
@@ -27,8 +28,9 @@ const FormContainer = () => {
           disabled: false,
           name: "student_email",
           value: "",
-          className: "border border-white/50 rounded-md p-0.5",
-          required: false,
+          className:
+            "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
+          required: true,
         },
         {
           id: ID(),
@@ -67,7 +69,8 @@ const FormContainer = () => {
           disabled: false,
           name: "user_name",
           value: "",
-          className: "border border-white/50 rounded-md p-0.5",
+          className:
+            "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
         },
         {
           id: ID(),
@@ -77,7 +80,8 @@ const FormContainer = () => {
           disabled: false,
           name: "user_email",
           value: "",
-          className: "border border-white/50 rounded-md p-0.5",
+          className:
+            "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
         },
         {
           id: ID(),
