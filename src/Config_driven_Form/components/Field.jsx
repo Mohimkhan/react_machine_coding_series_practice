@@ -1,25 +1,38 @@
+import { cn } from "../../../utils/cn";
+
 const Field = (props) => {
-  const { formName, handleChange, ...rest } = props;
+  const { formName, handleChange, className, ...rest } = props;
 
   const render = () => {
     const inputTypes = ["text", "email", "checkbox"];
 
     if (inputTypes.includes(rest.type)) {
       return (
-        <label htmlFor={rest.id}>
-          {rest.label}
-          <input
-            onChange={(e) =>
-              handleChange(
-                e.target.id,
-                e?.target?.name ?? rest?.name,
-                rest.type === "checkbox" ? e.target.checked : e.target.value,
-                formName,
-              )
-            }
-            {...rest}
-          ></input>
-        </label>
+        <>
+          <label htmlFor={rest.id}>
+            {rest.label}
+            <input
+              className={cn(
+                className,
+                `${rest?.error ? "focus-visible:ring-1 focus-visible:ring-red-500" : ""}`,
+              )}
+              onChange={(e) =>
+                handleChange(
+                  e.target.id,
+                  e?.target?.name ?? rest?.name,
+                  rest.type === "checkbox" ? e.target.checked : e.target.value,
+                  formName,
+                )
+              }
+              {...rest}
+            ></input>
+          </label>
+          {rest?.error && (
+            <span className="font-normal text-xs text-red-500">
+              {rest.error}
+            </span>
+          )}
+        </>
       );
     } else if (rest.type === "radio") {
       return (
@@ -35,6 +48,10 @@ const Field = (props) => {
                   >
                     {option}
                     <input
+                      className={cn(
+                        className,
+                        `${rest?.error ? "focus-visible:ring-1 focus-visible:ring-red-500" : ""}`,
+                      )}
                       {...rest}
                       checked={rest.options[option].checked}
                       onChange={(e) =>
@@ -55,6 +72,10 @@ const Field = (props) => {
     } else if (rest.type === "textarea") {
       return (
         <textarea
+          className={cn(
+            className,
+            `${rest?.error ? "focus-visible:ring-1 focus-visible:ring-red-500" : ""}`,
+          )}
           onChange={(e) =>
             handleChange(
               e.target.id,
@@ -69,6 +90,10 @@ const Field = (props) => {
     } else if (rest.type === "select") {
       return (
         <select
+          className={cn(
+            className,
+            `${rest?.error ? "focus-visible:ring-1 focus-visible:ring-red-500" : ""}`,
+          )}
           onChange={(e) =>
             handleChange(
               e.target.id,

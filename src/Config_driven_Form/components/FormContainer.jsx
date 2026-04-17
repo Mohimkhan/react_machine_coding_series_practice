@@ -16,9 +16,11 @@ const FormContainer = () => {
           disabled: false,
           name: "student_name",
           pattern: "[A-Za-z]+",
+          min: "2",
+          max: "10",
+          error: "",
           value: "",
-          className:
-            "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
+          className: "outline-none ring ring-white/50 rounded-md p-0.5",
           required: false,
         },
         {
@@ -28,9 +30,10 @@ const FormContainer = () => {
           placeholder: "Enter you're email",
           disabled: false,
           name: "student_email",
+          pattern: ".*@.*",
           value: "",
-          className:
-            "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
+          error: "",
+          className: "outline-none ring ring-white/50 rounded-md p-0.5",
           required: true,
         },
         {
@@ -42,7 +45,7 @@ const FormContainer = () => {
           name: "student_info_check",
           checked: false,
           value: false,
-          className: "border border-white/50 rounded-md p-0.5",
+          className: "outline-none ring ring-white/50 rounded-md p-0.55",
           required: false,
         },
         {
@@ -54,7 +57,7 @@ const FormContainer = () => {
           name: "student_gender",
           options: { male: { checked: false }, female: { checked: false } },
           value: "",
-          className: "border border-white/50 rounded-md p-0.5",
+          className: "p-0.5",
           required: false,
         },
       ],
@@ -70,9 +73,11 @@ const FormContainer = () => {
           disabled: false,
           name: "user_name",
           pattern: "[A-Za-z]+",
+          min: "2",
+          max: "10",
+          error: "",
           value: "",
-          className:
-            "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
+          className: "outline-none ring ring-white/50 rounded-md p-0.5",
         },
         {
           id: ID(),
@@ -81,9 +86,9 @@ const FormContainer = () => {
           placeholder: "Enter you're email",
           disabled: false,
           name: "user_email",
+          error: "",
           value: "",
-          className:
-            "[&:not(:placeholder-shown):invalid]:border-none [&:not(:placeholder-shown):invalid]:ring [&:not(:placeholder-shown):invalid]:ring-red-500 border border-white/50 rounded-md p-0.5",
+          className: "outline-none ring ring-white/50 rounded-md p-0.5",
         },
         {
           id: ID(),
@@ -91,9 +96,10 @@ const FormContainer = () => {
           label: "Write About Yourself: ",
           placeholder: "",
           disabled: false,
+          error: "",
           name: "user_about_them",
           value: "",
-          className: "border border-white/50 rounded-md p-0.5",
+          className: "outline-none ring ring-white/50 rounded-md p-0.5",
         },
         {
           id: ID(),
@@ -109,7 +115,8 @@ const FormContainer = () => {
             math: {},
           },
           value: "",
-          className: "bg-black text-white p-1 rounded-md",
+          className:
+            "outline-none ring ring-white/50 bg-black text-white p-1 rounded-md",
         },
       ],
       submittedValue: {},
@@ -158,7 +165,26 @@ const FormContainer = () => {
         ) {
           return { ...field, checked: value, value };
         } else if (fieldID === String(field.id) && field.name === fieldName) {
-          return { ...field, value };
+          if (field.min) {
+            if (value.length < field.min) {
+              return {
+                ...field,
+                value,
+                error: `Minimum length is ${field.min} character`,
+              };
+            }
+          }
+
+          if (field.max) {
+            if (value.length > field.min && value.length > field.max) {
+              return {
+                ...field,
+                value,
+                error: `Maximum length allowed: ${field.max}`,
+              };
+            }
+          }
+          return { ...field, value, error: "" };
         } else {
           return field;
         }
